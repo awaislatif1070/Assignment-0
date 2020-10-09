@@ -1,20 +1,42 @@
-#include <stdio.h> 
-#include <stdlib.h> 
-#include <string.h>
-#define str_size 100
-
-int main(int argc, char *argv[])
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct Student
 {
-char str[str_size];
-FILE* input;
-input = fopen("q1_a.txt", "r");
-		if ((input = fopen("q1_a.txt", "r")) == NULL) {
-			printf("Error! opening file\n");
-			exit(1);
-		}
-		fscanf(input, "%[^\n]", str);
-		printf("Array is : %s\n\n", str);
-
-        return 0;
+   int number;
+   char rollnum[100];
+   char name[100];  
+   char email[100];
+   Student()
+   {   }
+   void insert(FILE* ptr)
+   {
+     printf(" Enter Your Name " );
+     fgets(name,100,stdin);  
+      printf(" Enter Your Roll number " );
+      fgets(rollnum,100,stdin);
+      printf(" Enter Your Email " );
+     fgets(email,100,stdin);
+     number=0;
+     fputs(number,ptr);
+     fprintf(ptr,"Name: %s\t\t",name);
+     fprintf(ptr,"ROLLNUM: %s\t\t",rollnum);
+     fprintf(ptr,"EMAIL: %s\t\n",email);
+      number++;
+   }
+};
+int main()
+{
+   FILE *ptr;
+   ptr=fopen("help2.txt","a+");
+   Student obj;
+   printf(" Enter DATA " );
+   obj.insert(ptr);
+   int i=2;
+             while(i>0)
+        {
+           obj.insert(ptr);
+           i--;
+        }
+   return 0;
 }
-
